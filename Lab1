@@ -1,0 +1,34 @@
+.model small
+.386
+.stack 100h
+.data
+A db 2h    ; значение a
+B db 3h    ; значение b
+C db 4h    ; значение c
+.code
+start:
+MOV AL,Byte [1]
+MOV BL,Byte [2]
+MOV CL,Byte [3]
+ADD BL,CL
+IMUL BX
+MOV SI,AX
+SUB SI,10h
+IDIV BL
+SUB BL,CL
+XCHG AX,DI
+MOV AL,BL
+IMUL BL
+XCHG AX,DI
+SUB DI,BX
+ADD DI,10h
+IMUL CL
+IMUL CL
+IMUL CL
+SUB EDI,EAX
+XCHG EDI,EAX
+IDIV SI
+
+
+int 21h
+end start
